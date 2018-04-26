@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
 import './App.css';
-import { Button } from 'antd-mobile'
+
+import AutoRouter from './component/autoRouter/autoRouter';
+import Login from './component/login/login';
+import Register from './component/register/register'
 
 class App extends Component {
     render() {
         return (
             <div className="App">
-                <header className="App-header">
-                    <h1 className="App-title">Welcome to React</h1>
-                </header>
-                <Button type="primary">按钮</Button>
-                <p className="App-intro">
-                    To get started, edit <code>src/App.js</code> and save to reload.
-                </p>
+                <AutoRouter/>
+                <Switch>
+                    <Route path='/login' component={Login} />
+                    <Route path='/register' component={Register} />
+                </Switch>
             </div>
         );
     }
