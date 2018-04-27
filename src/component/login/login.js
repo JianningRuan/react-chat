@@ -10,16 +10,12 @@ class Login extends Component{
             password: ''
         }
     }
-    onChangeUser(val){
-        this.setState({
-            user: val
-        })
-    }
-    onChangePassword(val){
-        this.setState({
-            password: val
-        })
-    }
+        handleChange(key, val){
+        console.log(val);
+                this.setState({
+                        [key]: val
+                })
+        }
     onClickSubmit(){
         if (this.state.user === '' || this.state.password === ''){
             Toast.info('账号或密码不能为空');
@@ -46,8 +42,8 @@ class Login extends Component{
                 <WhiteSpace/>
                 <div className="flex1">
                     <List>
-                        <InputItem clear placeholder="请输入账号" maxLength={12} value={this.state.user} onChange={this.onChangeUser.bind(this)}>用户</InputItem>
-                        <InputItem type="password" clear placeholder="请输入密码" maxLength={16} value={this.state.password} onChange={this.onChangePassword.bind(this)}>密码</InputItem>
+                        <InputItem clear placeholder="请输入账号" maxLength={12} value={this.state.user} onChange={(v)=>this.handleChange('user', v)}>用户</InputItem>
+                        <InputItem type="password" clear placeholder="请输入密码" maxLength={16} value={this.state.password} onChange={(v)=>this.handleChange('password', v)}>密码</InputItem>
                     </List>
                 </div>
                 <WhiteSpace/>

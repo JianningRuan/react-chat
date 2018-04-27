@@ -4,7 +4,8 @@ import './App.css';
 
 import AutoRouter from './component/autoRouter/autoRouter';
 import Login from './component/login/login';
-import Register from './component/register/register'
+import Register from './component/register/register';
+console.log(Register);
 
 class App extends Component {
     render() {
