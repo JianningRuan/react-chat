@@ -28,7 +28,12 @@ class Register extends Component{
             return null
         }
         // 提交注册
-
+        let user = {
+            user: this.state.account,
+            password: this.state.password,
+            type: this.state.type
+        };
+        console.log(user);
     }
     render(){
 
