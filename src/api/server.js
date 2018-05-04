@@ -7,3 +7,6 @@ export function getUserInfo(){
 export function login(params) {
     return get(url.login, params);
 }
+export function register(params) {
+    return post(url.register, params);
+}

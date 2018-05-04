@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { NavBar, List, InputItem, Button, WhiteSpace, WingBlank, Icon, Radio, Toast } from 'antd-mobile';
+import * as server from './../../api/server';
 const RadioItem = Radio.RadioItem;
 class Register extends Component{
     constructor(props){
@@ -9,7 +10,8 @@ class Register extends Component{
             type: 'genius',
             password: '',
             repeatPassword: ''
-        }
+        };
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleChange(key, val){
         this.setState({
@@ -34,6 +36,7 @@ class Register extends Component{
             type: this.state.type
         };
         console.log(user);
+        server.register(user);
     }
     render(){
 
@@ -42,8 +45,8 @@ class Register extends Component{
                 <NavBar icon={<Icon type="left"/>}>注册页</NavBar>
                 <List>
                     <InputItem clear placeholder="请输入账号" value={this.state.account} onChange={(v)=>this.handleChange('account', v)}>账号</InputItem>
-                    <InputItem claer type="password" placeholder="请输入密码" value={this.state.password} onChange={(v)=>this.handleChange('password', v)}>密码</InputItem>
-                    <InputItem claer type="password" placeholder="请再次输入密码" value={this.state.repeatPassword} onChange={(v)=>this.handleChange('repeatPassword', v)}>确认密码</InputItem>
+                    <InputItem clear type="password" placeholder="请输入密码" value={this.state.password} onChange={(v)=>this.handleChange('password', v)}>密码</InputItem>
+                    <InputItem clear type="password" placeholder="请再次输入密码" value={this.state.repeatPassword} onChange={(v)=>this.handleChange('repeatPassword', v)}>确认密码</InputItem>
                 </List>
                 <WhiteSpace/>
                 <List>
@@ -52,7 +55,7 @@ class Register extends Component{
                 </List>
                 <WhiteSpace/>
                 <WingBlank>
-                    <Button type="primary" onClick={()=>this.handleSubmit}>注册</Button>
+                    <Button type="primary" onClick={this.handleSubmit}>注册</Button>
                 </WingBlank>
                 <WhiteSpace/>
             </div>

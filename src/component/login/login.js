@@ -8,14 +8,16 @@ class Login extends Component{
         this.state = {
             user: '',
             password: ''
-        }
+        };
+        this.onClickSubmit = this.onClickSubmit.bind(this);
+        this.goRegister = this.goRegister.bind(this);
     }
-        handleChange(key, val){
+    handleChange(key, val){
         console.log(val);
-                this.setState({
-                        [key]: val
-                })
-        }
+        this.setState({
+            [key]: val
+        })
+    }
     onClickSubmit(){
         if (this.state.user === '' || this.state.password === ''){
             Toast.info('账号或密码不能为空');
@@ -35,6 +37,9 @@ class Login extends Component{
             }
         })
     }
+    goRegister(){
+        this.props.history.push('/register');
+    }
     render(){
         return (
             <div className="flex flex-c">
@@ -48,9 +53,9 @@ class Login extends Component{
                 </div>
                 <WhiteSpace/>
                 <WingBlank>
-                    <Button type="primary" onClick={this.onClickSubmit.bind(this)}>登 录</Button>
+                    <Button type="primary" onClick={this.onClickSubmit}>登 录</Button>
                     <WhiteSpace/>
-                    <Button>注 册</Button>
+                    <Button onClick={this.goRegister}>注 册</Button>
                     <WhiteSpace/>
                 </WingBlank>
             </div>
