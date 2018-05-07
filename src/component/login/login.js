@@ -33,7 +33,7 @@ class Login extends Component{
                 // 跳转
             }else {
                 // 弹窗提示失败
-                Toast.fail('登录失败');
+                Toast.fail(res.data.errMsg);
             }
         })
     }

@@ -36,7 +36,15 @@ class Register extends Component{
             type: this.state.type
         };
         console.log(user);
-        server.register(user);
+        server.register(user).then((res)=>{
+            console.log(res);
+            const data = res.data;
+            if (data.code === 1){
+
+            }else {
+                Toast.show(data.errMsg);
+            }
+        });
     }
     render(){
 
