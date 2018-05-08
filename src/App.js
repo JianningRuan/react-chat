@@ -5,7 +5,8 @@ import './App.css';
 import AutoRouter from './component/autoRouter/autoRouter';
 import Login from './component/login/login';
 import Register from './component/register/register';
-console.log(Register);
+
+import FillData from './component/fillData/fillData';
 
 class App extends Component {
     render() {
@@ -15,6 +16,7 @@ class App extends Component {
                 <Switch>
                     <Route path='/login' component={Login} />
                     <Route path='/register' component={Register} />
+                    <Route path='/fillData' component={FillData} />
                 </Switch>
             </div>
         );

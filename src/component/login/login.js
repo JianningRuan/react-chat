@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import { WingBlank, Button, WhiteSpace, NavBar, List, InputItem, Toast } from 'antd-mobile';
 import * as server from './../../api/server';
+import { connect } from 'react-redux';
+import { loginFinish } from './../../store/user';
 
+@connect(
+    state=>state.user,
+    { loginFinish }
+)
 class Login extends Component{
     constructor(props){
         super(props);
@@ -13,7 +19,6 @@ class Login extends Component{
         this.goRegister = this.goRegister.bind(this);
     }
     handleChange(key, val){
-        console.log(val);
         this.setState({
             [key]: val
         })
@@ -30,7 +35,10 @@ class Login extends Component{
             console.log(res);
             if (res.data.code === 1){
                 // 记录登录
+                this.props.loginFinish(res.data.data);
+                console.log('login:', this.props);
                 // 跳转
+                this.props.history.push('/fillData');
             }else {
                 // 弹窗提示失败
                 Toast.fail(res.data.errMsg);

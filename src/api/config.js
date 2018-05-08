@@ -23,8 +23,7 @@ axios.interceptors.response.use((config)=>{
 
 export function get(url, params={}) {
     return new Promise((resolve, reject)=>{
-        console.log(params);
-        axios.post(url, {params: params}).then((res)=>{
+        axios.get(url, {params: params}).then((res)=>{
             resolve(res)
         }, (err)=>{
             reject(err);
