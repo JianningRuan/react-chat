@@ -38,7 +38,7 @@ class Login extends Component{
                 this.props.loginFinish(res.data.data);
                 console.log('login:', this.props);
                 // 跳转
-                this.props.history.push('/fillData');
+                this.props.history.push(this.props.redirectTo);
             }else {
                 // 弹窗提示失败
                 Toast.fail(res.data.errMsg);

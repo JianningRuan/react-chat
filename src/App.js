@@ -6,7 +6,8 @@ import AutoRouter from './component/autoRouter/autoRouter';
 import Login from './component/login/login';
 import Register from './component/register/register';
 
-import FillData from './component/fillData/fillData';
+import bossInfo from './component/bossInfo/bossInfo';
+import geniusInfo from './component/geniusInfo/geniusInfo'
 
 class App extends Component {
     render() {
@@ -14,9 +15,10 @@ class App extends Component {
             <div className="App">
                 <AutoRouter/>
                 <Switch>
+                    <Route path='/geniusInfo' component={geniusInfo} />
+                    <Route path='/bossInfo' component={bossInfo} />
                     <Route path='/login' component={Login} />
                     <Route path='/register' component={Register} />
-                    <Route path='/fillData' component={FillData} />
                 </Switch>
             </div>
         );
