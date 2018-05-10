@@ -10,3 +10,6 @@ export function login(params) {
 export function register(params) {
     return post(url.register, params);
 }
+export function updateInfo(parmas) {
+    return post(url.updateInfo, parmas);
+}
