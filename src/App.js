@@ -9,6 +9,8 @@ import Register from './component/register/register';
 import bossInfo from './component/bossInfo/bossInfo';
 import geniusInfo from './component/geniusInfo/geniusInfo'
 
+import main from './component/main/main';
+
 class App extends Component {
     render() {
         return (
@@ -19,6 +21,7 @@ class App extends Component {
                     <Route path='/bossInfo' component={bossInfo} />
                     <Route path='/login' component={Login} />
                     <Route path='/register' component={Register} />
+                    <Route component={main} />
                 </Switch>
             </div>
         );
