@@ -13,3 +13,6 @@ export function register(params) {
 export function updateInfo(parmas) {
     return post(url.updateInfo, parmas);
 }
+export function userList(params) {
+    return get(url.userList, params);
+}

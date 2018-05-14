@@ -3,7 +3,13 @@ import HeadPicList from './../../unit/headPicList/HeadPicList';
 import { List, InputItem, NavBar, TextareaItem, Button, Toast } from 'antd-mobile';
 import unit from "../../assets/js/unit";
 import * as server from './../../api/server';
+import { connect } from 'react-redux';
+import { updateDate } from './../../store/user';
 
+@connect(
+    state=>state.user,
+    { updateDate }
+)
 class geniusInfo extends Component{
     constructor(props){
         super(props);
@@ -23,7 +29,11 @@ class geniusInfo extends Component{
             return null
         }
         server.updateInfo(this.state).then((res)=>{
-
+            if (res.status === 200 && res.data.code === 1){
+                this.props.updateDate(res.data.data);
+                console.log(this.props.redirectTo);
+                this.props.history.push(this.props.redirectTo);
+            }
         })
     }
     render(){
