@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import * as server from './../../api/server';
-import { Card } from 'antd-mobile';
+import UserCard from './../../unit/userCard/userCard';
+import { getUserList } from './../../store/chatUser';
 
+@connect(
+    state=>state.chatUser,
+    { getUserList }
+)
 class geniusList extends Component {
     constructor(props){
         super(props);
@@ -9,26 +15,22 @@ class geniusList extends Component {
             geniusArr: []
         }
     }
-    geniusArr = [];
     componentDidMount(){
-        server.userList({type: 'genius'}).then((res)=>{
+        /*server.userList({type: 'genius'}).then((res)=>{
             console.log(res);
-            console.log(this.geniusArr);
             if (res.status === 200 && res.data.code === 1){
-                this.state.geniusArr = res.data.data;
-                console.log(this.state.geniusArr);
+                this.setState({
+                    geniusArr: res.data.data
+                });
             }
-        })
+        })*/
+
+        this.props.getUserList('genius');
     }
+
     render(){
-        const Header = Card.Header;
-        const Body = Card.Body;
         return(
-            <div>
-                {this.state.geniusArr.map(v=>(
-                    <div key={v._id}>11</div>
-                ))}
-            </div>
+            <UserCard userList={this.props.userList} />
         )
     }
 }

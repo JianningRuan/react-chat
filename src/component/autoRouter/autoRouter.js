@@ -18,6 +18,7 @@ class AutoRouter extends Component{
             return
         }
         server.getUserInfo().then((res)=>{
+            console.log('首次进入是', res);
             if (res.status === 200){
                 // 是否已登录
                 if (res.data.code === 0){
