@@ -1,11 +1,28 @@
 import React, { Component } from 'react';
-import { Result, List, WhiteSpace } from 'antd-mobile';
+import { Result, List, WhiteSpace, Modal } from 'antd-mobile';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-
+import browserCookie from 'browser-cookies';
+import { toLogout } from './../../store/user';
+const alert = Modal.alert;
 @connect(
-    state=>state.user
+    state=>state.user,
+    { toLogout }
 )
 class center extends Component {
+    constructor(props){
+        super(props);
+        this.logout = this.logout.bind(this);
+    }
+    logout(){
+        alert('注销', '确认注销吗？', [
+            {text: '取消', onPress: ()=>console.log('取消')},
+            {text: '确认', onPress:()=> {
+                browserCookie.erase('userId');
+                this.props.toLogout();
+            }}
+        ]);
+    }
     render(){
         console.log(this.props);
         const Item = List.Item;
@@ -23,10 +40,10 @@ class center extends Component {
                 </List>
                 <WhiteSpace/>
                 <List>
-                    <Item>退出登录</Item>
+                    <Item onClick={this.logout}>退出登录</Item>
                 </List>
             </div>
-        ): null
+        ): <Redirect to='/login'/>
     }
 }
 

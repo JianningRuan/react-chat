@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import { Card, WhiteSpace } from 'antd-mobile';
+import { withRouter } from 'react-router-dom';
 
+@withRouter
 class UserCard extends Component{
+    goChat(val){
+        console.log('goChat', val);
+        this.props.history.push(`/chat/${val._id}`);
+    }
     render(){
         const Header = Card.Header;
         const Body = Card.Body;
@@ -9,7 +15,7 @@ class UserCard extends Component{
             <div>
                 <WhiteSpace/>
                 {this.props.userList.map(v=>(
-                    v.headPic? <Card key={v._id}>
+                    v.headPic? <Card key={v._id} onClick={()=>this.goChat(v)}>
                         <Header title={v.user} thumb={require(`./../../assets/img/headPic/${v.headPic}.png`)} extra={<span>求职：{v.title}</span>}/>
                         <Body>
                         {v.type === 'boss'? <div>公司：{v.company}</div>: null}

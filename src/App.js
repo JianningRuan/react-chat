@@ -11,6 +11,8 @@ import geniusInfo from './component/geniusInfo/geniusInfo'
 
 import main from './component/main/main';
 
+import chat from './component/chat/chat';
+
 class App extends Component {
     render() {
         return (
@@ -21,6 +23,7 @@ class App extends Component {
                     <Route path='/bossInfo' component={bossInfo} />
                     <Route path='/login' component={Login} />
                     <Route path='/register' component={Register} />
+                    <Route path='/chat/:id' component={chat} />
                     <Route component={main} />
                 </Switch>
             </div>

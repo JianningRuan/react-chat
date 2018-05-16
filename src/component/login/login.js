@@ -3,11 +3,13 @@ import { WingBlank, Button, WhiteSpace, NavBar, List, InputItem, Toast } from 'a
 import * as server from './../../api/server';
 import { connect } from 'react-redux';
 import { loginFinish } from './../../store/user';
+import fromFun from './../../unit/from/from';
 
 @connect(
     state=>state.user,
     { loginFinish }
 )
+@fromFun
 class Login extends Component{
     constructor(props){
         super(props);
@@ -18,19 +20,19 @@ class Login extends Component{
         this.onClickSubmit = this.onClickSubmit.bind(this);
         this.goRegister = this.goRegister.bind(this);
     }
-    handleChange(key, val){
+    /*handleChange(key, val){
         this.setState({
             [key]: val
         })
-    }
+    }*/
     onClickSubmit(){
-        if (this.state.user === '' || this.state.password === ''){
+        if (this.props.state.user === '' || this.props.state.password === ''){
             Toast.info('账号或密码不能为空');
             return null
         }
         server.login({
-            user: this.state.user,
-            password: this.state.password
+            user: this.props.state.user,
+            password: this.props.state.password
         }).then((res)=>{
             console.log(res);
             if (res.data.code === 1){
@@ -55,8 +57,8 @@ class Login extends Component{
                 <WhiteSpace/>
                 <div className="flex1">
                     <List>
-                        <InputItem clear placeholder="请输入账号" maxLength={12} value={this.state.user} onChange={(v)=>this.handleChange('user', v)}>用户</InputItem>
-                        <InputItem type="password" clear placeholder="请输入密码" maxLength={16} value={this.state.password} onChange={(v)=>this.handleChange('password', v)}>密码</InputItem>
+                        <InputItem clear placeholder="请输入账号" maxLength={12} value={this.props.state.user} onChange={(v)=>this.props.handleChange('user', v)}>用户</InputItem>
+                        <InputItem type="password" clear placeholder="请输入密码" maxLength={16} value={this.props.state.password} onChange={(v)=>this.props.handleChange('password', v)}>密码</InputItem>
                     </List>
                 </div>
                 <WhiteSpace/>
