@@ -10,9 +10,12 @@ export function login(params) {
 export function register(params) {
     return post(url.register, params);
 }
-export function updateInfo(parmas) {
-    return post(url.updateInfo, parmas);
+export function updateInfo(params) {
+    return post(url.updateInfo, params);
 }
 export function userList(params) {
     return get(url.userList, params);
+}
+export function getChatList(params) {
+    return get(url.chatList, params);
 }
