@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { NavBar, List, InputItem, Button, WhiteSpace, WingBlank, Icon, Radio, Toast } from 'antd-mobile';
 import * as server from './../../api/server';
+import { loginFinish } from './../../store/user';
 const RadioItem = Radio.RadioItem;
+
+@connect(
+    state=>state.user,
+    { loginFinish }
+)
 class Register extends Component{
     constructor(props){
         super(props);
@@ -40,7 +47,9 @@ class Register extends Component{
             console.log(res);
             const data = res.data;
             if (data.code === 1){
-
+                this.props.loginFinish(res.data.data);
+                console.log(this);
+                this.props.history.push(this.props.redirectTo);
             }else {
                 Toast.show(data.errMsg);
             }

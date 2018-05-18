@@ -13,6 +13,10 @@ let unit = {
         _this.setState({
             [key]: val
         })
+    },
+
+    createChatId(userId, targetId){
+        return [userId, targetId].sort().join('_');
     }
 };
 

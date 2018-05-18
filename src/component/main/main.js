@@ -18,8 +18,10 @@ class main extends Component{
         super(props);
     }
     componentDidMount(){
-        this.props.getChatList();
-        this.props.recvMsg(); // 监听
+        if (!this.props.chat.chatMsg.length) {
+            this.props.getChatList();
+            this.props.recvMsg(); // 监听
+        }
     }
     render(){
         console.log('main:', this);

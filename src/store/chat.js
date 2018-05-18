@@ -7,15 +7,17 @@ const MSG_RECV = 'MSG_RECV'; // 读取信息
 const MSG_READ = 'MSG_READ'; // 设为已读
 const initState = {
     chatMsg: [],
-    unReadNum: 0
+    unReadNum: 0,
+    users: {}
 };
 
 export function chat(state = initState, action) {
     switch (action.type){
         case MSG_LIST:
-            return {...state, chatMsg: action.payload, unReadNum: action.payload.filter(v=>!v.read).length};
+            return {...state, users: action.payload.users, chatMsg: action.payload.msg, unReadNum: action.payload.msg.filter(v=>!v.read && v.from !== action.payload.userId).length};
         case MSG_RECV:
-            return {...state, chatMsg: [...state.chatMsg, action.payload], unReadNum: state.unReadNum + 1};
+            const n = action.payload.msg.to === action.payload.userId? 1 : 0;
+            return {...state, chatMsg: [...state.chatMsg, action.payload.msg], unReadNum: state.unReadNum + n};
         case MSG_READ:
             return null;
         default:
@@ -24,11 +26,12 @@ export function chat(state = initState, action) {
 }
 
 export function getChatList() {
-    return dispatch=>{
+    return (dispatch, getState)=>{
         server.getChatList().then((res)=>{
             console.log(res);
+            console.log(getState());
             if (res.status === 200 && res.data.code === 1){
-                dispatch({type: MSG_LIST, payload: res.data.data})
+                dispatch({type: MSG_LIST, payload: {msg: res.data.data, users: res.data.users, userId: getState().user._id}})
             }
         })
     }
@@ -42,10 +45,10 @@ export function sendMsg(from, to, msg) {
 }
 
 export function recvMsg() {
-    return dispatch=>{
+    return (dispatch, getState)=>{
         socket.on('recvMsg', function (data) {
             console.log('接受到：', data);
-            dispatch({type: MSG_RECV, payload: data})
+            dispatch({type: MSG_RECV, payload: {msg:data, userId: getState().user._id}})
         })
     }
 }
