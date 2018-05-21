@@ -19,7 +19,8 @@ export function chat(state = initState, action) {
             const n = action.payload.msg.to === action.payload.userId? 1 : 0;
             return {...state, chatMsg: [...state.chatMsg, action.payload.msg], unReadNum: state.unReadNum + n};
         case MSG_READ:
-            return null;
+            const {from, userId} = action.payload;
+            return {...state, chatMsg: state.chatMsg.map(v=>({...v, read: from === v.from? true: v.read})), unReadNum: state.unReadNum - action.payload.num};
         default:
             return state
     }
@@ -49,6 +50,18 @@ export function recvMsg() {
         socket.on('recvMsg', function (data) {
             console.log('接受到：', data);
             dispatch({type: MSG_RECV, payload: {msg:data, userId: getState().user._id}})
+        })
+    }
+}
+
+export function readMsg(from) { // from为对方的id
+    return (dispatch, getState)=>{
+        const readMsgParams = {from};
+        server.readMsg(readMsgParams).then((res)=>{
+            const userId = getState().user._id;
+            if (res.status === 200 && res.data.code === 1){
+                dispatch({type: MSG_READ, payload: {from, userId, num: res.data.data.num}})
+            }
         })
     }
 }

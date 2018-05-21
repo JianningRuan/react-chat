@@ -6,3 +6,4 @@ export const updateInfo = `/user/updateInfo`;
 export const userList = `/user/list`;
 
 export const chatList = `/chat/getMsgList`;
+export const readMsg = `/chat/readMsg`;

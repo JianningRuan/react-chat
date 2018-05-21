@@ -19,3 +19,6 @@ export function userList(params) {
 export function getChatList(params) {
     return get(url.chatList, params);
 }
+export function readMsg(params) {
+    return post(url.readMsg, params);
+}
