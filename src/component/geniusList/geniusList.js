@@ -16,15 +16,6 @@ class geniusList extends Component {
         }
     }
     componentDidMount(){
-        /*server.userList({type: 'genius'}).then((res)=>{
-            console.log(res);
-            if (res.status === 200 && res.data.code === 1){
-                this.setState({
-                    geniusArr: res.data.data
-                });
-            }
-        })*/
-
         this.props.getUserList('genius');
     }
 

@@ -24,7 +24,6 @@ class center extends Component {
         ]);
     }
     render(){
-        console.log(this.props);
         const Item = List.Item;
         const Brief = Item.Brief;
         return this.props.user? (

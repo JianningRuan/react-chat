@@ -48,7 +48,6 @@ export function sendMsg(from, to, msg) {
 export function recvMsg() {
     return (dispatch, getState)=>{
         socket.on('recvMsg', function (data) {
-            console.log('接受到：', data);
             dispatch({type: MSG_RECV, payload: {msg:data, userId: getState().user._id}})
         })
     }

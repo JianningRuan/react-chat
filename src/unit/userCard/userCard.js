@@ -5,7 +5,6 @@ import { withRouter } from 'react-router-dom';
 @withRouter
 class UserCard extends Component{
     goChat(val){
-        console.log('goChat', val);
         this.props.history.push(`/chat/${val._id}`);
     }
     render(){

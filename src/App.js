@@ -15,6 +15,7 @@ import chat from './component/chat/chat';
 
 class App extends Component {
     render() {
+        console.log('app:', this);
         return (
             <div className="App">
                 <AutoRouter/>

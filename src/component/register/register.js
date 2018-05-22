@@ -42,13 +42,10 @@ class Register extends Component{
             password: this.state.password,
             type: this.state.type
         };
-        console.log(user);
         server.register(user).then((res)=>{
-            console.log(res);
             const data = res.data;
             if (data.code === 1){
                 this.props.loginFinish(res.data.data);
-                console.log(this);
                 this.props.history.push(this.props.redirectTo);
             }else {
                 Toast.show(data.errMsg);

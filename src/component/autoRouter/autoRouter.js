@@ -13,12 +13,10 @@ class AutoRouter extends Component{
         // 当前页面是哪个
         const pathList = ['/login', '/register'];
         let currentPath = this.props.location.pathname;
-        console.log(pathList.indexOf(currentPath));
         if (pathList.indexOf(currentPath)  !== -1){
             return
         }
         server.getUserInfo().then((res)=>{
-            console.log('首次进入是', res);
             if (res.status === 200){
                 // 是否已登录
                 if (res.data.code === 0){

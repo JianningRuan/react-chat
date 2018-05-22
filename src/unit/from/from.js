@@ -8,7 +8,6 @@ export default function fromFun(Comp) {
             this.handleChange = this.handleChange.bind(this)
         }
         handleChange(key,val){
-            console.log(this);
             this.setState({
                 [key]:val
             })

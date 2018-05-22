@@ -12,7 +12,6 @@ class Nav extends Component{
         navList: PropTypes.array.isRequired
     };
     render(){
-        console.log('nav:', this);
         const pathName = this.props.location.pathname;
         const navList = this.props.navList.filter(v=>!v.hide);
         return(

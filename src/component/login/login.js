@@ -38,7 +38,6 @@ class Login extends Component{
             if (res.data.code === 1){
                 // 记录登录
                 this.props.loginFinish(res.data.data);
-                console.log('login:', this.props);
                 // 跳转
                 this.props.history.push(this.props.redirectTo);
             }else {

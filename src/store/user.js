@@ -17,7 +17,7 @@ export function user(state = initState, action) {
         case LOGIN_SUCCESS:
             return {...state, redirectTo: unit.getRedirectPath(action.userDate), ...action.userDate};
         case LOGIN_MSG:
-            return {...state, ...action.userDate};
+            return {...state, redirectTo: unit.getRedirectPath(action.userDate),  ...action.userDate};
         case UPDATE_DATA:
             return {...state, redirectTo: unit.getRedirectPath(action.userDate), ...action.userDate};
         case LOG_OUT:
