@@ -20,14 +20,15 @@ class headPicList extends Component{
                 {this.state.icon ? (
                     <div className='head-pic-title flex flex-align-center'>
                         <span>已选择</span>
-                        <img className='head-pic-item' src={require(`./../../assets/img/headPic/${this.state.icon}.png`)}/>
+                        <img className='head-pic-item' alt={this.state.icon} src={require(`./../../assets/img/headPic/${this.state.icon}.png`)}/>
                     </div>
                 ): (
                     <div className='head-pic-title'>请选择</div>
                 )}
                 <List>
                     <Grid data={picList} columnNum={5} onClick={(v, i)=>{
-                        this.state.icon = v.text;
+                        // this.state.icon = v.text;
+                        this.setState('icon', v.text);
                         this.props.selectHeadPic(v, i);
                     }} />
                 </List>

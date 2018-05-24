@@ -26,7 +26,6 @@ class AutoRouter extends Component{
                 // 角色是哪个
                 this.props.keepLogin(res.data.data);
             }
-
             // 是否信息完善
         })
     }

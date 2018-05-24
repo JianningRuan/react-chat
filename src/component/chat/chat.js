@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import io from 'socket.io-client';
 import { List, InputItem, NavBar, Icon, Grid } from 'antd-mobile';
 import fromFun from './../../unit/from/from';
 import { connect } from 'react-redux';
@@ -7,7 +6,6 @@ import { getChatList, sendMsg, recvMsg, readMsg } from './../../store/chat';
 import unit from './../../assets/js/unit';
 
 import './chat.less';
-// const socket = io('ws://localhost:9093');
 
 @connect(
     state=>state,

@@ -1,9 +1,13 @@
 import axios from 'axios';
 import { Toast } from 'antd-mobile';
-axios.defaults.headers = {
+/*axios.defaults.headers = {
     'X-Requested-With': 'XMLHttpRequest'
+};*/
+axios.defaults.headers = {
+    'Content-Type': 'application/x-www-form-urlencoded'
 };
 axios.defaults.timeout = 10000;
+axios.defaults.withCredentials = true; // 允许携带cookie
 if (process.env.NODE_ENV === 'development') {
     axios.defaults.baseURL = '';
 } else if (process.env.NODE_ENV === 'production') {

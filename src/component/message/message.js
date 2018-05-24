@@ -18,7 +18,7 @@ class message extends Component {
         const userId = this.props.user._id;
         const userInfo = this.props.chat.users;
         const msgGroup = {};
-         this.props.chat.chatMsg.forEach(v=>{ // 用id作为key
+        this.props.chat.chatMsg.forEach(v=>{ // 用id作为key
              // console.log(msgGroup[v.chatId]);
              msgGroup[v.chatId] = msgGroup[v.chatId] || [];
              msgGroup[v.chatId].push(v);

@@ -14,9 +14,6 @@ import { getChatList, recvMsg } from './../../store/chat';
     {getChatList, recvMsg}
 )
 class main extends Component{
-    constructor(props){
-        super(props);
-    }
     componentDidMount(){
         if (!this.props.chat.chatMsg.length) {
             this.props.getChatList();

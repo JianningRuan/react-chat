@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as server from './../../api/server';
 import UserCard from './../../unit/userCard/userCard';
 import { getUserList } from './../../store/chatUser';
 

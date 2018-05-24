@@ -34,7 +34,6 @@ class Login extends Component{
             user: this.props.state.user,
             password: this.props.state.password
         }).then((res)=>{
-            console.log(res);
             if (res.data.code === 1){
                 // 记录登录
                 this.props.loginFinish(res.data.data);
