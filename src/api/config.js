@@ -9,9 +9,9 @@ axios.defaults.headers = {
 axios.defaults.timeout = 10000;
 axios.defaults.withCredentials = true; // 允许携带cookie
 if (process.env.NODE_ENV === 'development') {
-    axios.defaults.baseURL = '';
+    axios.defaults.baseURL = 'http://localhost:9093';
 } else if (process.env.NODE_ENV === 'production') {
-    axios.defaults.baseURL = '';
+    axios.defaults.baseURL = 'http://47.104.232.7:9093';
 }
 // 拦截请求
 axios.interceptors.request.use((config)=>{
