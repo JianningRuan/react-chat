@@ -1,11 +1,12 @@
 import axios from 'axios';
+import qs from 'qs';
 import { Toast } from 'antd-mobile';
 /*axios.defaults.headers = {
     'X-Requested-With': 'XMLHttpRequest'
 };*/
-axios.defaults.headers = {
+/*axios.defaults.headers = {
     'Content-Type': 'application/x-www-form-urlencoded'
-};
+};*/
 axios.defaults.timeout = 10000;
 axios.defaults.withCredentials = true; // 允许携带cookie
 if (process.env.NODE_ENV === 'development') {
@@ -36,6 +37,7 @@ export function get(url, params={}) {
 }
 
 export function post(url, params={}) {
+    let newParams = qs.stringify(params);
     return new Promise((resolve, reject)=>{
         axios.post(url, params).then((res)=>{
             resolve(res)

@@ -27,8 +27,10 @@ class headPicList extends Component{
                 )}
                 <List>
                     <Grid data={picList} columnNum={5} onClick={(v, i)=>{
-                        // this.state.icon = v.text;
-                        this.setState('icon', v.text);
+                        console.log(v);
+                        console.log(this);
+                        this.state.icon = v.text;
+                        // this.setState('icon', v.text);
                         this.props.selectHeadPic(v, i);
                     }} />
                 </List>
